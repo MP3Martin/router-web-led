@@ -41,10 +41,10 @@ ZZ=`echo "$QUERY_STRING" | sed -n 's/^.*pass=\([^&]*\).*$/\1/p' | sed "s/%20/ /g
 
 # Check if XX (led number) is a real number
 if [ -n "$XX" ] && [ "$XX" -eq "$XX" ] 2>/dev/null; then
-  :
+    :
 else
-  echo "Error: Bro think he number 💀"
-   exit 0
+    echo "Error: Bro think he number 💀"
+    exit 0
 fi
 
 # Check if XX (led number) is in range 0 - 7
@@ -61,7 +61,7 @@ eval LED_NAME=$LED_NAME
 
 # Turn on/off the led
 echo $LED_NAME > /root/led.txt
-    
+
 echo "ඞ ok"
 echo '</body>'
 echo '</html>'
