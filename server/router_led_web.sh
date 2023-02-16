@@ -30,6 +30,7 @@ LED_7="tp-link\:green\:qss"
 
 # Misc globals
 LED_COUNT="8"
+STUPID_PASSWORD="whentheimposterissus"
 
 # ^ ^ ^ !!! END OF CONFIGURATION, YOU SHOULD CHANGE THESE VARIABLES !!! ^ ^ ^
 
@@ -58,7 +59,8 @@ set_led()
     # Turn on/off the led
     LED_TRIGGER_PATH="/sys/class/leds/$LED_NAME/trigger"
     COMMAND="echo $LED_STATE > $LED_TRIGGER_PATH"
-    eval $COMMAND # I know, unsafe, but i was too lazy to fix the bug with "\:"
+    eval $COMMAND # I know, unsafe, but it doesn't work if i just run the command. Probably an
+    #               error with the colons/backslashes in LED names. Pull request is welcome.
 }
 
 echo "Content-type: text/html"
@@ -93,7 +95,7 @@ YY=`echo "$QUERY_STRING" | sed -n 's/^.*state=\([^&]*\).*$/\1/p' | sed "s/%20/ /
 ZZ=`echo "$QUERY_STRING" | sed -n 's/^.*pass=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
 
 # Check stupid, unsecure and maybe funny password
-if [ "$ZZ" != "whentheimposterissus" ]; then
+if [ "$ZZ" != "$STUPID_PASSWORD" ]; then
     echo "Error: Bro think he password 💀"
     exit 0
 fi
