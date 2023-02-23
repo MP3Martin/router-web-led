@@ -1,0 +1,95 @@
+Screen {
+    layers: normal above;
+}
+
+.main_container {
+    padding-top: 1;
+}
+
+#modes_container {
+    dock: left;
+    width: 40%;
+    height: 100%;
+}
+
+.mode_container {
+    layout: grid;
+    grid-size: 2 1;
+    grid-columns: 10 1fr;
+    
+    min-height: 3;
+    /* padding-bottom: 1; */
+
+    border: round #505050;
+}
+
+.mode_title {
+    align: left top;
+}
+
+.mode_description {
+    height: 100%;
+}
+
+Header {
+    dock: top;
+    width: 100vw;
+    layer: above;
+}
+
+#set_config_container {
+    align: center top;
+}
+
+#config_container {
+    border: round #505050;
+    height: 19;
+}
+
+.configs_container {
+    min-height: 5;
+}
+
+#save_config_wrapper {
+    align: center top;
+    min-height: 3;
+}
+
+.configs_input {
+}
+
+#state_toggle_wrapper {
+    layout: grid;
+    grid-size: 2 1;
+    grid-columns: 10 1fr;
+    
+    min-height: 3;
+
+    border: round #505050;
+}
+
+#state_container {
+    min-height: 5;
+}
+
+.mode_warning {
+    layout: vertical;
+    padding-left: 1;
+    padding-right: 1;
+}
+
+#errortext_container {
+    padding-left: 1;
+    padding-right: 1;
+    max-height: 10;
+    min-height: 5;
+
+    border: round #505050;
+}
+
+.hide_errortext #errortext_container {
+    display: none;
+    border: none;
+    height: 0;
+    padding: 0;
+}
