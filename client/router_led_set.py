@@ -1,21 +1,16 @@
-from textual.app import App, ComposeResult
+from textual.app import App
 from textual import events
 from textual.binding import Binding
-from textual.containers import Container, Horizontal
-from textual.css.query import NoMatches
+from textual.containers import Container
 from textual.reactive import var, reactive
-from textual.widgets import Button, Static, Input, ListView, ListItem, Label, Header, Footer, Switch, Markdown
-from textual.widget import Widget
-from textual.screen import Screen
+from textual.widgets import Button, Static, Input, Header, Footer, Switch
 
-from rich.traceback import Traceback
+# from rich.traceback import Traceback
 
 from libraries.util import str_has_numbers
 from libraries.util import load_config
 from libraries.util import set_config
 import os
-import time
-import sys
 from multiprocessing import Process, Queue
 import libraries.main_lib as main_lib
 

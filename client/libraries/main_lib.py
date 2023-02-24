@@ -1,12 +1,8 @@
 import requests
-import sys
-from multiprocessing import Process
-import threading
 from time import sleep
 from libraries.util import AttributeDict
-import os
-from concurrent.futures import Future
 from libraries.util import ExceptionThread
+import traceback
 
 should_exit = False
 
@@ -93,7 +89,7 @@ def gen_frame(mode):
     led_frame = led_frame[1:]
   return led_frame
 
-def main(mode, config, do_stop = False, do_stop_async = False, queue_ = False):
+def main_(mode, config, do_stop = False, do_stop_async = False, queue_ = False):
   global CONFIG
   CONFIG.SERVER_IP = str(config["server_ip"])
   CONFIG.SERVER_PATH = str(config["server_path"])
@@ -114,3 +110,14 @@ def main(mode, config, do_stop = False, do_stop_async = False, queue_ = False):
       sleep(CONFIG.DELAY)
   else:
     stop(None, do_stop_async)
+    
+def main(*args, **kwargs):
+  try:
+    main_(*args, **kwargs)
+  except Exception:
+    queue = args[4]
+    if queue != False:
+      try:
+        queue.put({"error": (str(traceback.format_exc()), "")})
+      except:
+        pass
