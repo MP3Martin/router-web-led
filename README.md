@@ -45,6 +45,9 @@ Your server (router) is now set up!
 
 You can use mouse or *TAB* / *arrow* key(s) to control the [TUI](https://en.wikipedia.org/wiki/Text-based_user_interface). Press buttons using mouse left button or *ENTER* key.
 
+> **Note**
+> If you are on Windows, you should use [Windows Terminal](https://github.com/microsoft/terminal). Why? Because the TUI looks better on it than on classic cmd. (but it will still work in cmd)
+
 # Pull requests
 
 Pull requests are welcome, you could maybe add more modes or optimise the code (remove useless / duplicate code if you find any).
