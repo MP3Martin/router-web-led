@@ -55,9 +55,6 @@ Header {
     min-height: 3;
 }
 
-.configs_input {
-}
-
 #state_toggle_wrapper {
     layout: grid;
     grid-size: 2 1;
