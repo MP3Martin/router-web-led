@@ -29,9 +29,7 @@ def stop(e = None, async_ = False):
     set_all_led(0, (not async_), True)
   except Exception:
     pass
-  # os._exit(0)
   exit()
-  # raise Exception(str(e))
 
 # def set_led(led, state):
 #   payload = {"pass": CONFIG.PASSWORD, "led": str(led), "state": str(state)}
@@ -114,7 +112,7 @@ def main_(mode, config, do_stop = False, do_stop_async = False, queue_ = False):
 def main(*args, **kwargs):
   try:
     main_(*args, **kwargs)
-  except Exception:
+  except (Exception, ValueError, SystemExit):
     queue = args[4]
     if queue != False:
       try:
