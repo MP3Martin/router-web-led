@@ -27,7 +27,7 @@ def stop(e = None, async_ = False):
     pass
   try:
     set_all_led(0, (not async_), True)
-  except:
+  except Exception:
     pass
   # os._exit(0)
   exit()
@@ -48,7 +48,7 @@ def set_frame(leds, sync = False, force_run = False):
     if queue != False:
       try:
         queue.put({"error": (str(args[0]), str(args[1]))})
-      except:
+      except Exception:
         pass
     # os._exit(0)
     # exit()
@@ -119,5 +119,5 @@ def main(*args, **kwargs):
     if queue != False:
       try:
         queue.put({"error": (str(traceback.format_exc()), "")})
-      except:
+      except Exception:
         pass
