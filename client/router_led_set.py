@@ -49,7 +49,7 @@ def select_mode(self, mode_id):
     switch = self.query_one(f".mode_switch_{mode_id}", Switch)
     switch.focus()
     switch.toggle()
-  except:
+  except Exception:
     pass
 
 class Configs(Static):
@@ -77,7 +77,7 @@ class Configs(Static):
       input_keyname = input_.id.replace("configs_input_", "")
       try:
         input_.value = self.config[input_keyname]
-      except:
+      except Exception:
         pass
 
 class ErrorText(Static):
@@ -92,7 +92,7 @@ class ErrorText(Static):
         self.ancestors[-1].add_class("hide_errortext")
       else:
         self.ancestors[-1].remove_class("hide_errortext")
-    except:
+    except Exception:
       pass
     if new_error != None:
       self.update(f"Error: {new_error[0]}\n{new_error[1]}")
@@ -111,7 +111,7 @@ class StateText(Static):
         self.ancestors[-1].query_one(State).process.kill()
         self.ancestors[-1].query_one(State).queue = None
         self.ancestors[-1].query_one(State).error_text = err
-      except:
+      except Exception:
         pass
         
     try:
@@ -122,7 +122,7 @@ class StateText(Static):
         self.ancestors[-1].query_one(State).state = -1
       else:
         self.state = self.ancestors[-1].query_one(State).state  
-    except:
+    except Exception:
       pass
     self.switch_state = self.ancestors[-1].query_one("#state_toggle").value
   def get_state_text(self, state):
@@ -155,7 +155,7 @@ class State(Static):
   def led_off(self):
     try:
       main_lib.main(int(self.ancestors[-1].query_one(Modes).mode), self.ancestors[-1].query_one(Configs).config, True, True)
-    except:
+    except Exception:
       pass
   
   def start_process(self, state):
@@ -172,7 +172,7 @@ class State(Static):
         try:
           self.process.kill()
           self.led_off()
-        except:
+        except Exception:
           pass
     except Exception as e:
       self.state = -1
@@ -286,7 +286,7 @@ class SetRouterLEDApp(App):
           try:
             target = self.query_one(f".mode_switch_{target_id}")
             target.focus()
-          except:
+          except Exception:
             pass
           
   # def on_mount(self):
@@ -329,12 +329,12 @@ class SetRouterLEDApp(App):
       self.query_one(State).process.terminate()
       # if state == 1:
       #   main_lib.main(int(self.query_one(Modes).mode), self.query_one(Configs).config, True)
-    except:
+    except Exception:
       pass
     try:
       if self.ancestors[-1].query_one("#state_toggle").value == True:
         self.ancestors[-1].query_one("#state_toggle").toggle()
-    except:
+    except Exception:
       pass
     self.app.exit()
         
