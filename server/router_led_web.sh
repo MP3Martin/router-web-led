@@ -40,7 +40,7 @@ set_led()
     # $2 is LED state
     
     # Get the led name by id
-    LED_NAME="$""LED_"$1
+    LED_NAME="\$LED_"$1
     eval LED_NAME=$LED_NAME
     
     # Get the state
@@ -89,10 +89,10 @@ if [ -z "$QUERY_STRING" ]; then
 fi
 
 # Extract the data you are looking for with sed:
-WW=`echo "$QUERY_STRING" | sed -n 's/^.*mode=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
-XX=`echo "$QUERY_STRING" | sed -n 's/^.*led=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
-YY=`echo "$QUERY_STRING" | sed -n 's/^.*state=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
-ZZ=`echo "$QUERY_STRING" | sed -n 's/^.*pass=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+WW=$(echo "$QUERY_STRING" | sed -n 's/^.*mode=\([^&]*\).*$/\1/p' | sed "s/%20/ /g")
+XX=$(echo "$QUERY_STRING" | sed -n 's/^.*led=\([^&]*\).*$/\1/p' | sed "s/%20/ /g")
+YY=$(echo "$QUERY_STRING" | sed -n 's/^.*state=\([^&]*\).*$/\1/p' | sed "s/%20/ /g")
+ZZ=$(echo "$QUERY_STRING" | sed -n 's/^.*pass=\([^&]*\).*$/\1/p' | sed "s/%20/ /g")
 
 # Check stupid, unsecure and maybe funny password
 if [ "$ZZ" != "$STUPID_PASSWORD" ]; then
@@ -120,7 +120,7 @@ fi
 #   1 is all LEDs at once
 if ! [ "$WW" -eq 1 ]; then
     # Check if XX (led number) is in range "0" to "$LED_COUNT - 1"
-    _temp=`expr $LED_COUNT - 1`
+    _temp=$(($LED_COUNT - 1))
     if [ "$XX" -ge 0 ] && [ "$XX" -le "$_temp" ]; then
         :
     else
@@ -161,7 +161,7 @@ else
     #   1 = on
     while [ ${#XX} -gt 0 ]; do
         next=${XX#?}
-        index=`expr $LED_COUNT - ${#XX}`
+        index=$(($LED_COUNT - ${#XX}))
         set_led $index ${XX%$next}
         XX=$next
     done
